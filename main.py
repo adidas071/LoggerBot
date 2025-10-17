@@ -15,7 +15,7 @@ SCOPES = [
 creds = Credentials.from_service_account_file("cedar-unison-475409-u6-e34e54e7b216.json", scopes=SCOPES)
 gc = gspread.authorize(creds)
 
-GUILD_ID = 1428320493903155213
+GUILD_ID = xxxxxxxxxxxxxxxxxxx
 
 # main body
 class Client(discord.Client):
@@ -66,8 +66,10 @@ async def traininglog(interaction: discord.Interaction, host: str, passed_attend
 
     await interaction.response.send_message(embed=embed)
 
-    sheet = gc.open("WV, Police Academy Database").worksheet("Training logs ")
+    sheet = gc.open("WV, Police Academy Database").worksheet("Training logs ") #if u use diff sheet then replace the name of the sheet then the name of the worksheet subsheet wtv is called
     try:
+        #this is the code for the sheet above, will work with other sheet but it isnt gonna look nice
+        
         # Find next empty row in column E (Host column)
         col_values = sheet.col_values(5)  # column E
         next_row = len(col_values) + 1
@@ -87,3 +89,4 @@ async def traininglog(interaction: discord.Interaction, host: str, passed_attend
 
 
 client.run(TOKEN)
+
