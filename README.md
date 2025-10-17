@@ -1,112 +1,89 @@
-Discord Training Bot
+equirements
 
-A Discord bot that logs training sessions to Google Sheets and provides confirmation embeds in Discord.
+Python 3.10+
 
-Features
+PyCharm (or any Python IDE)
 
-Slash command /traininglog to record:
+Windows OS
 
-Host
+Setup
+1️⃣ Download and extract
 
-Passed attendees
+Download the ZIP of the repository.
 
-Failed attendees
+Extract it to a folder on your PC.
 
-Training phase
+Open the folder in PyCharm.
 
-Sends an embedded confirmation in Discord.
-
-Automatically logs the data to a Google Sheet.
-
-Designed for easy setup and use.
-
-File Structure
-SampleBot/
-│
-├─ main.py           # Main bot code
-├─ keep_alive.py     # Optional: for hosting (e.g., Pella/Replit)
-├─ requirements.txt  # Python dependencies
-├─ .env              # Discord bot token (not tracked in Git)
-└─ service_account.json  # Google Sheets service account JSON (not tracked in Git)
-
-Setup Instructions
-1. Clone the Repository
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
-
-
-Or download the ZIP and extract it.
-
-2. Install Python & Dependencies
-
-Make sure Python is installed.
-Create a virtual environment and install dependencies:
-
+2️⃣ Create a virtual environment
 python -m venv venv
-# Activate virtual environment:
-# Windows
 venv\Scripts\activate
-# macOS/Linux
-source venv/bin/activate
 
+3️⃣ Install dependencies
 pip install -r requirements.txt
 
-3. Discord Bot Setup
+4️⃣ Configure .env
 
-Go to the Discord Developer Portal
-.
+Create a .env file in the project folder:
 
-Create a new application → add a bot → copy the bot token.
-
-Create a .env file in the project root:
-
-DISCORD_TOKEN=your_bot_token_here
+DISCORD_TOKEN=YOUR_DISCORD_BOT_TOKEN
 
 
-In main.py, replace the GUILD_ID variable with your server’s ID.
+No spaces around =
 
-4. Google Sheets Setup
+5️⃣ Configure Google Sheets
 
-Create a service account in Google Cloud Console
-.
+Create a Google Cloud Service Account.
+
+Download the JSON credentials file.
 
 Enable Google Sheets API and Google Drive API.
 
-Download the JSON key file and place it in the project folder.
+Share your Google Sheet with the service account email (Editor).
 
-Share your Google Sheet with the service account’s email (xxxx@xxxx.iam.gserviceaccount.com) with Editor permissions.
+Place JSON in the project folder.
 
-In main.py, replace the JSON filename in the code with your service account JSON file.
+Example in main.py:
 
-5. Run the Bot
-python main.py
+creds = Credentials.from_service_account_file("service_account.json", scopes=SCOPES)
 
+6️⃣ Set your server ID
 
-The bot should now come online and respond to the /traininglog command.
+Open main.py
 
-Usage Example
+Replace GUILD_ID with your server ID:
 
-In Discord, type:
+GUILD_ID = 123456789012345678
 
-/traininglog host: Alice passed_attendees: Bob,Charlie failed_attendees: Dave phase: Phase 1
+7️⃣ Run the bot
 
+Slash Command Usage
 
-The bot will:
+/traininglog – Logs a training session.
 
-Send an embed with the training log in Discord
+Parameters:
 
-Add a new row in the Google Sheet with the data
+host – Who hosted
 
-Hosting Tips
+passed_attendees – Passed attendees
 
-For 24/7 uptime, you can host on cloud services like Pella
- or Replit
-.
+failed_attendees – Failed attendees
 
-Keep your .env and service account JSON private; do not commit them to GitHub.
+phase – Training phase
 
-Security Notes
+The bot sends an embed in Discord and logs data to Google Sheets.
 
-Never share your Discord bot token or Google service account JSON.
+Security
 
-Use .gitignore to exclude .env and JSON files from Git.
+Do not share .env or JSON credentials.
+
+Keep your bot token safe.
+
+Regenerate token if leaked.
+
+File Structure
+main.py
+keep_alive.py
+requirements.txt
+.env                 # Discord token
+service_account.json # Google credentials
