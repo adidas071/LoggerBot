@@ -7,6 +7,7 @@ PyCharm (or any Python IDE)
 Windows OS
 
 Setup
+
 1️⃣ Download and extract
 
 Download the ZIP of the repository.
@@ -16,7 +17,9 @@ Extract it to a folder on your PC.
 Open the folder in PyCharm.
 
 2️⃣ Create a virtual environment
+
 python -m venv venv
+
 venv\Scripts\activate
 
 3️⃣ Install dependencies
